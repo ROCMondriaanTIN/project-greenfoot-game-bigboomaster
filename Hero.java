@@ -36,6 +36,7 @@ public class Hero extends Mover {
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
+    public static boolean inLevel;
 
     public Hero(int width, int heigth) {
         super();
@@ -59,16 +60,25 @@ public class Hero extends Mover {
         }
         applyVelocity();
         handleInput();
-        for (Actor enemy : getIntersectingObjects(Enemy.class)) {
-            if (enemy != null) {
-                getWorld().removeObject(this);
-                break;
+        dead();
+    }
+    public void dead(){
+            if(inLevel == true){
+            for (Actor enemy : getIntersectingObjects(Enemy.class)) {
+                inLevel = false;
+                if (enemy != null) {
+                    getWorld().removeObject(this);
+                    Greenfoot.setWorld(new GameOver());
+                    return;
+                }
             }
-        }
-        for (Actor WaterTile : getIntersectingObjects(WaterTile.class)) {
-            if (WaterTile != null) {
-                getWorld().removeObject(this);
-                break;
+            for (Actor WaterTile : getIntersectingObjects(WaterTile.class)) {
+                inLevel = false;
+                if (WaterTile != null) {
+                    getWorld().removeObject(this);
+                    Greenfoot.setWorld(new GameOver());
+                    return;
+                }
             }
         }
     }
@@ -78,7 +88,6 @@ public class Hero extends Mover {
         return under != null;
     }
 
-    
     public void switchChar(){
         switch(vs.speler){
             case 1:
@@ -183,6 +192,7 @@ public class Hero extends Mover {
         frame ++;
 
     }
+
     public void animatieLeft() {
         if(frame == 1)
         {

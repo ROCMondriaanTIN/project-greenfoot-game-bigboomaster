@@ -17,7 +17,7 @@ public class Level1 extends MyWorld
     
     public Level1()
     {
-
+        Hero.inLevel = true;
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.setBackground("background8.png");
         int[][] map = {
@@ -125,7 +125,7 @@ public class Level1 extends MyWorld
         // Alle objecten toevoegen aan de wereld: camera, main karakter en mogelijke enemies
         addObject(camera, 0, 0);
         addObject(hero, 10, 1600);
-        addObject(new Enemy(), 1170, 410);
+        addObject(new Enemy(), 10, 1410);
 
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
