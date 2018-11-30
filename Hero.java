@@ -65,6 +65,12 @@ public class Hero extends Mover {
                 break;
             }
         }
+        for (Actor WaterTile : getIntersectingObjects(WaterTile.class)) {
+            if (WaterTile != null) {
+                getWorld().removeObject(this);
+                break;
+            }
+        }
     }
 
     boolean onGround(){
