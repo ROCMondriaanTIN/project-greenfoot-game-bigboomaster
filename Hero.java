@@ -32,7 +32,9 @@ public class Hero extends Mover {
     private GreenfootImage run20 = new GreenfootImage("p1_walk09.png");
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
-
+    
+    static GreenfootSound bgm1 = new GreenfootSound("bgm1.wav");
+    
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
@@ -68,6 +70,7 @@ public class Hero extends Mover {
                 inLevel = false;
                 if (enemy != null) {
                     getWorld().removeObject(this);
+                    Greenfoot.playSound("smb_mariodie.wav");
                     Greenfoot.setWorld(new GameOver());
                     return;
                 }
@@ -76,10 +79,15 @@ public class Hero extends Mover {
                 inLevel = false;
                 if (WaterTile != null) {
                     getWorld().removeObject(this);
+                    Greenfoot.playSound("smb_mariodie.wav");
                     Greenfoot.setWorld(new GameOver());
                     return;
                 }
             }
+            bgm1.play();
+        }
+        else{
+            bgm1.stop();
         }
     }
 

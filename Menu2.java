@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Menu2 extends World
 {
-
+    static GreenfootSound MenuSound = new GreenfootSound("MenuSound.wav");
     public Menu2()
     {    
         super(1000,800,1,false);
         this.setBackground("background6.png");
         prepare();
         Greenfoot.start();
+        MenuSound.playLoop();
     }
 
     public void act(){
@@ -29,7 +30,8 @@ public class Menu2 extends World
 
     private void advandce(){
         if(Greenfoot.isKeyDown("enter")){
-            Greenfoot.setWorld(new Menu());
+            Greenfoot.setWorld(new VeranderSpeler());
+            MenuSound.stop();
         }
     }
 }

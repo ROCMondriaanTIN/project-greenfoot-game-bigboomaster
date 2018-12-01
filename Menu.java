@@ -5,10 +5,12 @@
         Buttons buttons = new Buttons();
         Button2 button2 = new Button2();
         Button3 button3 = new Button3();
+        static GreenfootSound MenuSound = new GreenfootSound("MenuSound.wav");
         public Menu(){
             super(1000,800,1,false);
             this.setBackground("optieMenu.png");
             prepare();
+            MenuSound.playLoop();
         }
         public void act(){
             allButtons();
@@ -23,12 +25,15 @@
     public void allButtons(){
         if (Greenfoot.mouseClicked(buttons)) {
             Greenfoot.setWorld(new Level1());
+            MenuSound.stop();
         }
-        if (Greenfoot.mouseClicked(button2)) {
+        else if (Greenfoot.mouseClicked(button2)) {
             Greenfoot.setWorld(new VeranderSpeler());
+            MenuSound.stop();
         }
-        if (Greenfoot.mouseClicked(button3)) {
+        else if (Greenfoot.mouseClicked(button3)) {
             Greenfoot.setWorld(new LevelSelect());
+            MenuSound.stop();
         }        
     }
 

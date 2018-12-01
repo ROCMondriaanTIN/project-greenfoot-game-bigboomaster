@@ -37,19 +37,19 @@ public class VeranderSpeler extends World
 
     public void select(){
         if (Greenfoot.mouseClicked(speler1)) {
-            Greenfoot.setWorld(new Level1());
+            Greenfoot.setWorld(new LevelSelect());
             speler = 1;
         }
         else if (Greenfoot.mouseClicked(speler2)) {
-            Greenfoot.setWorld(new Level1());
+            Greenfoot.setWorld(new LevelSelect());
             speler = 2;
         }
         else if (Greenfoot.mouseClicked(speler3)) {
-            Greenfoot.setWorld(new Level1());
+            Greenfoot.setWorld(new LevelSelect());
             speler = 3;
         }
         else if (Greenfoot.mouseClicked(speler4)) {
-            Greenfoot.setWorld(new Level1());
+            Greenfoot.setWorld(new LevelSelect());
             speler = 4;
         }
     }
