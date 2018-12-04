@@ -13,6 +13,7 @@ public class Level1 extends MyWorld
 
     public void act(){
         ce.update();
+        Music.levendeHero();
     }
     
     public Level1()
@@ -20,6 +21,8 @@ public class Level1 extends MyWorld
         Hero.inLevel = true;
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.setBackground("background8.png");
+        Music.bgm1.playLoop();
+        Music.bgm1.setVolume(40);
         int[][] map = {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},

@@ -46,6 +46,7 @@ public class LevelSelect extends World
     public void buttonUse(){
             if (Greenfoot.mouseClicked(lb1)) {
             Greenfoot.setWorld(new Level1());
+            Music.MenuSound.stop();
         }
     }
     

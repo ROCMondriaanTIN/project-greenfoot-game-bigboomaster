@@ -6,9 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Music extends Actor
+public class Music
 {
-    public void act() 
-    {
-    }    
+    static GreenfootSound bgm1 = new GreenfootSound("bgm1.wav");
+    static GreenfootSound MenuSound = new GreenfootSound("MenuSound.wav");
+    
+    public static void levendeHero(){
+    if(Hero.inLevel == false){
+        bgm1.stop();
+    }
+}
 }

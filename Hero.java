@@ -33,8 +33,6 @@ public class Hero extends Mover {
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     
-    static GreenfootSound bgm1 = new GreenfootSound("bgm1.wav");
-    
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
@@ -63,6 +61,7 @@ public class Hero extends Mover {
         applyVelocity();
         handleInput();
         dead();
+        Music.levendeHero();
     }
     public void dead(){
             if(inLevel == true){
@@ -84,10 +83,6 @@ public class Hero extends Mover {
                     return;
                 }
             }
-            bgm1.play();
-        }
-        else{
-            bgm1.stop();
         }
     }
 
@@ -124,6 +119,7 @@ public class Hero extends Mover {
             velocityY = -13;
             setImage("p1_jump.png");
             getImage().scale(HERO_WIDTH, HERO_HEIGHT);
+            Greenfoot.playSound("smw_jump.wav");
         }
 
         else if (Greenfoot.isKeyDown("a")) {
