@@ -14,6 +14,8 @@ public class Level1 extends MyWorld
     public void act(){
         ce.update();
         Music.levendeHero();
+        Timer.countTime();
+        showText("Time: " + Timer.time/100, 50, 50);
     }
 
     public Level1()
@@ -23,6 +25,7 @@ public class Level1 extends MyWorld
         this.setBackground("background8.png");
         Music.bgm1.playLoop();
         Music.bgm1.setVolume(40);
+        Timer.time = 6000;    
         int[][] map = {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -121,7 +124,7 @@ public class Level1 extends MyWorld
         // Declareren en initialiseren van een main karakter van het spel mijne heet Hero. Deze klasse 
         // moet de klasse Mover extenden voor de camera om te werken
         Hero hero = new Hero(30, 40);
-        Key key = new Key(10, 5);
+        Key key = new Key(23, 23);
         // Laat de camera een object volgen. Die moet een Mover instatie zijn of een extentie hiervan.
         camera.follow(hero);
 
@@ -129,23 +132,14 @@ public class Level1 extends MyWorld
         addObject(camera, 0, 0);
         addObject(hero, 10, 1600);
         addObject(new Enemy(), 10, 1410);
-        addObject(key, 20, 1600);
+        addObject(key,20,1600);
 
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
         // Toevoegen van de mover instantie of een extentie hiervan
         ce.addCollidingMover(hero);
-        prepare();
     }
 
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
-        Key key = new Key(23, 23);
-        addObject(key,438,575);
-    }
+
 }

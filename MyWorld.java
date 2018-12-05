@@ -14,9 +14,14 @@ public class MyWorld extends World {
      *
      */
     public MyWorld() {
-		super(1000,800,1,false);
-		Greenfoot.setWorld(new Menu2());
+        super(1000,800,1,false);
+        Greenfoot.setWorld(new Menu2());
+        Greenfoot.setSpeed(43);
     }
-		
+    public void removeKey(){
+        if(Greenfoot.mouseClicked(getObjects(Key.class))){
+            removeObjects(getObjects(Key.class));
+        }
+    }
     
 }

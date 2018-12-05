@@ -32,7 +32,7 @@ public class Hero extends Mover {
     private GreenfootImage run20 = new GreenfootImage("p1_walk09.png");
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
-    
+
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
@@ -62,9 +62,17 @@ public class Hero extends Mover {
         handleInput();
         dead();
         Music.levendeHero();
+        getLeven();
     }
+
+    public void getLeven(){
+        if(getObjectsInRange(100, Key.class).size() != 0){
+            //to be continued
+        }
+    }
+
     public void dead(){
-            if(inLevel == true){
+        if(inLevel == true){
             for (Actor enemy : getIntersectingObjects(Enemy.class)) {
                 inLevel = false;
                 if (enemy != null) {
