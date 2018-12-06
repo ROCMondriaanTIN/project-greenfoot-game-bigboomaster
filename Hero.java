@@ -70,24 +70,11 @@
             handleInput();
             dead();
             Music.levendeHero();
-            //removeObject();
         }
           
     public List<Key> getKeysInRange(){
         return getObjectsInRange(100,Key.class);
-        
-        /*if(inLevel == true){
-            if(getObjectsInRange(1000, Key.class).size() != 0){
-                inRangeOfKey = true;
-            }
-            else{
-                inRangeOfKey = false;
-            }
-        }*/
     }
-    /*public void removeObject(){
-       getWorld().removeObjects(getObjectsInRange(40, Key.class));
-    }*/
 
     public void dead(){
         if(inLevel == true){
@@ -97,6 +84,7 @@
                     getWorld().removeObject(this);
                     Greenfoot.playSound("smb_mariodie.wav");
                     Greenfoot.setWorld(new GameOver());
+                    Punten.punten = 0;
                     return;
                 }
             }
@@ -105,6 +93,7 @@
                 if (WaterTile != null) {
                     getWorld().removeObject(this);
                     Greenfoot.playSound("smb_mariodie.wav");
+                    Punten.punten = 0;
                     Greenfoot.setWorld(new GameOver());
                     return;
                 }

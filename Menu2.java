@@ -16,6 +16,7 @@ public class Menu2 extends World
         Greenfoot.start();
         Music.MenuSound.playLoop();
         Music.MenuSound.setVolume(70);
+        Hero.inLevel = false;
     }
 
     public void act(){

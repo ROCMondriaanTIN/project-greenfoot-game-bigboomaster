@@ -10,7 +10,7 @@ public class Music
 {
     static GreenfootSound bgm1 = new GreenfootSound("bgm1.wav");
     static GreenfootSound MenuSound = new GreenfootSound("MenuSound.wav");
-    
+    Hero hr;
     public static void levendeHero(){
     if(Hero.inLevel == false){
         bgm1.stop();

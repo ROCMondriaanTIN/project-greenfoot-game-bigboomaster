@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  * Write a description of class Level1 here.
  * 
@@ -15,8 +16,6 @@ public class Level1 extends MyWorld
         removeKey();
         ce.update();
         Music.levendeHero();
-        Timer.countTime();
-        showText("Time: " + Timer.time/100, 50, 50);
     }
 
     public Level1()
@@ -25,8 +24,7 @@ public class Level1 extends MyWorld
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.setBackground("background8.png");
         Music.bgm1.playLoop();
-        Music.bgm1.setVolume(40);
-        Timer.time = 6000;    
+        Music.bgm1.setVolume(40);;    
         int[][] map = {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -126,6 +124,8 @@ public class Level1 extends MyWorld
         // moet de klasse Mover extenden voor de camera om te werken
         hr = new Hero(30, 40);
         Key key = new Key(30, 30);
+        Punten p1 = new Punten();
+        MyTimer mt = new MyTimer();
         // Laat de camera een object volgen. Die moet een Mover instatie zijn of een extentie hiervan.
         camera.follow(hr);
 
@@ -134,7 +134,8 @@ public class Level1 extends MyWorld
         addObject(hr, 10, 1600);
         addObject(new Enemy(), 10, 1410);
         addObject(key,90,1600);
-
+        addObject(p1,900, 50);
+        addObject(mt,50,50);
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
@@ -142,6 +143,4 @@ public class Level1 extends MyWorld
         ce.addCollidingMover(hr);
         Hero.inLevel = true;
     }
-
-
 }
