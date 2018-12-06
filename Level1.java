@@ -12,6 +12,7 @@ public class Level1 extends MyWorld
     private CollisionEngine ce;
 
     public void act(){
+        removeKey();
         ce.update();
         Music.levendeHero();
         Timer.countTime();
@@ -20,7 +21,7 @@ public class Level1 extends MyWorld
 
     public Level1()
     {
-        Hero.inLevel = true;
+        
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.setBackground("background8.png");
         Music.bgm1.playLoop();
@@ -123,22 +124,23 @@ public class Level1 extends MyWorld
         Camera camera = new Camera(te);
         // Declareren en initialiseren van een main karakter van het spel mijne heet Hero. Deze klasse 
         // moet de klasse Mover extenden voor de camera om te werken
-        Hero hero = new Hero(30, 40);
-        Key key = new Key(23, 23);
+        hr = new Hero(30, 40);
+        Key key = new Key(30, 30);
         // Laat de camera een object volgen. Die moet een Mover instatie zijn of een extentie hiervan.
-        camera.follow(hero);
+        camera.follow(hr);
 
         // Alle objecten toevoegen aan de wereld: camera, main karakter en mogelijke enemies
         addObject(camera, 0, 0);
-        addObject(hero, 10, 1600);
+        addObject(hr, 10, 1600);
         addObject(new Enemy(), 10, 1410);
-        addObject(key,20,1600);
+        addObject(key,90,1600);
 
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
         // Toevoegen van de mover instantie of een extentie hiervan
-        ce.addCollidingMover(hero);
+        ce.addCollidingMover(hr);
+        Hero.inLevel = true;
     }
 
 

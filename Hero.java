@@ -1,75 +1,93 @@
-
-import greenfoot.*;
-import javax.swing.JOptionPane;
-
-public class Hero extends Mover {
-
-    VeranderSpeler vs;
-    private final double gravity;
-    private final double acc;
-    private final double drag;
-    public static int HERO_WIDTH;
-    public static int HERO_HEIGHT;
-    private GreenfootImage run1 = new GreenfootImage("p1_walk01 L.png");
-    private GreenfootImage run2 = new GreenfootImage("p1_walk02 L.png");
-    private GreenfootImage run3 = new GreenfootImage("p1_walk03 L.png");
-    private GreenfootImage run4 = new GreenfootImage("p1_walk04 L.png");
-    private GreenfootImage run5 = new GreenfootImage("p1_walk05 L.png");
-    private GreenfootImage run6 = new GreenfootImage("p1_walk06 L.png");
-    private GreenfootImage run7 = new GreenfootImage("p1_walk07 L.png");
-    private GreenfootImage run8 = new GreenfootImage("p1_walk08 L.png");
-    private GreenfootImage run9 = new GreenfootImage("p1_walk09 L.png");
-    private GreenfootImage run10 = new GreenfootImage("p1_walk10 L.png");
-    private GreenfootImage run11 = new GreenfootImage("p1_walk11 L.png");
-    private GreenfootImage run12 = new GreenfootImage("p1_walk01.png");
-    private GreenfootImage run13 = new GreenfootImage("p1_walk02.png");
-    private GreenfootImage run14 = new GreenfootImage("p1_walk03.png");
-    private GreenfootImage run15 = new GreenfootImage("p1_walk04.png");
-    private GreenfootImage run16 = new GreenfootImage("p1_walk05.png");
-    private GreenfootImage run17 = new GreenfootImage("p1_walk06.png");
-    private GreenfootImage run18 = new GreenfootImage("p1_walk07.png");
-    private GreenfootImage run19 = new GreenfootImage("p1_walk08.png");
-    private GreenfootImage run20 = new GreenfootImage("p1_walk09.png");
-    private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
-    private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
-
-    private int frame = 1;
-    private int speed = 3;
-    private boolean onGround;
-    public static boolean inLevel;
-
-    public Hero(int width, int heigth) {
-        super();
-        this.HERO_WIDTH = width;
-        this.HERO_HEIGHT = heigth;
-        gravity = 9.8;
-        acc = 0.6;
-        drag = 0.8;
-        setImage("p1.png");
-        getImage().scale(width, heigth);
-    }
-
-    @Override
-    public void act() {
-        handleInput();
-        switchChar();
-        velocityX *= drag;
-        velocityY += acc;
-        if (velocityY > gravity) {
-            velocityY = gravity;
+    
+    import greenfoot.*;
+    import javax.swing.JOptionPane;
+    import java.util.*;
+    
+    public class Hero extends Mover {
+    
+        VeranderSpeler vs;
+        private final double gravity;
+        private final double acc;
+        private final double drag;
+        public static int HERO_WIDTH;
+        public static int HERO_HEIGHT;
+        private GreenfootImage run1 = new GreenfootImage("p1_walk01 L.png");
+        private GreenfootImage run2 = new GreenfootImage("p1_walk02 L.png");
+        private GreenfootImage run3 = new GreenfootImage("p1_walk03 L.png");
+        private GreenfootImage run4 = new GreenfootImage("p1_walk04 L.png");
+        private GreenfootImage run5 = new GreenfootImage("p1_walk05 L.png");
+        private GreenfootImage run6 = new GreenfootImage("p1_walk06 L.png");
+        private GreenfootImage run7 = new GreenfootImage("p1_walk07 L.png");
+        private GreenfootImage run8 = new GreenfootImage("p1_walk08 L.png");
+        private GreenfootImage run9 = new GreenfootImage("p1_walk09 L.png");
+        private GreenfootImage run10 = new GreenfootImage("p1_walk10 L.png");
+        private GreenfootImage run11 = new GreenfootImage("p1_walk11 L.png");
+        private GreenfootImage run12 = new GreenfootImage("p1_walk01.png");
+        private GreenfootImage run13 = new GreenfootImage("p1_walk02.png");
+        private GreenfootImage run14 = new GreenfootImage("p1_walk03.png");
+        private GreenfootImage run15 = new GreenfootImage("p1_walk04.png");
+        private GreenfootImage run16 = new GreenfootImage("p1_walk05.png");
+        private GreenfootImage run17 = new GreenfootImage("p1_walk06.png");
+        private GreenfootImage run18 = new GreenfootImage("p1_walk07.png");
+        private GreenfootImage run19 = new GreenfootImage("p1_walk08.png");
+        private GreenfootImage run20 = new GreenfootImage("p1_walk09.png");
+        private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
+        private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
+    
+        private int frame = 1;
+        private int speed = 3;
+        private boolean onGround;
+        public static boolean inLevel;
+    
+        public Hero(int width, int heigth) {
+            super();
+            this.HERO_WIDTH = width;
+            this.HERO_HEIGHT = heigth;
+            gravity = 9.8;
+            acc = 0.6;
+            drag = 0.8;
+            setImage("p1.png");
+            getImage().scale(width, heigth);
         }
-        applyVelocity();
-        handleInput();
-        dead();
-        Music.levendeHero();
-        getLeven();
-    }
-
-    public void getLeven(){
-        if(getObjectsInRange(100, Key.class).size() != 0){
-            //to be continued
+    
+        public Hero(){
+            super();
+            gravity = 9.8;
+            acc = 0.6;
+            drag = 0.8;
         }
+    
+        @Override
+        public void act() {
+            handleInput();
+            switchChar();
+            velocityX *= drag;
+            velocityY += acc;
+            if (velocityY > gravity) {
+                velocityY = gravity;
+            }
+            applyVelocity();
+            handleInput();
+            dead();
+            Music.levendeHero();
+            //removeObject();
+        }
+          
+    public List<Key> getKeysInRange(){
+        return getObjectsInRange(100,Key.class);
+        
+        /*if(inLevel == true){
+            if(getObjectsInRange(1000, Key.class).size() != 0){
+                inRangeOfKey = true;
+            }
+            else{
+                inRangeOfKey = false;
+            }
+        }*/
     }
+    /*public void removeObject(){
+       getWorld().removeObjects(getObjectsInRange(40, Key.class));
+    }*/
 
     public void dead(){
         if(inLevel == true){
