@@ -75,6 +75,9 @@
     public List<Key> getKeysInRange(){
         return getObjectsInRange(100,Key.class);
     }
+    public List<Letter> getLettesInRange(){
+        return getObjectsInRange(100,Letter.class);
+    }
 
     public void dead(){
         if(inLevel == true){

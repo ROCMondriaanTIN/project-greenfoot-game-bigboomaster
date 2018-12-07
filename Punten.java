@@ -21,4 +21,8 @@ public class Punten extends Actor
     {
         punten += 100;
     }
+    public static void scoreLetter()
+    {
+        punten += 500;
+    }
 }

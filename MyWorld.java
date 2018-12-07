@@ -29,6 +29,15 @@ public class MyWorld extends World {
                 }
             }
         }
+         if(Greenfoot.mouseClicked(null)){
+            for(Letter letter: hr.getLettesInRange()) {
+                if(Greenfoot.getMouseInfo().getActor().equals(letter)){ 
+                    removeObject(letter);
+                    Greenfoot.playSound("smb3_1-up.wav");
+                    Punten.scoreLetter();
+                }
+            }
+        }
     }
 
     public void act(){

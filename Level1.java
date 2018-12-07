@@ -156,6 +156,7 @@ public class Level1 extends MyWorld
         addObject(key,90,1600);
         addObject(p1,900, 50);
         addObject(t1,80, 60);
+        addObject(new Letter('A',30,30), 300, 1500);
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
