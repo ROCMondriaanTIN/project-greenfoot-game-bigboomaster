@@ -21,6 +21,7 @@ public class Level1 extends MyWorld
                 startSeconds --;
                 if(startSeconds == 0){
                   timer.cancel();
+                  Punten.punten = 0;
                   Greenfoot.setWorld(new GameOver());
                   Music.bgm1.stop();
                   Greenfoot.playSound("smb_mariodie.wav");
