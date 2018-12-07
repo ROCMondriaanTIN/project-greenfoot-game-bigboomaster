@@ -11,6 +11,24 @@ public class Level1 extends MyWorld
 {
 
     private CollisionEngine ce;
+    public static int startSeconds = 60;
+
+    Timer timer = new Timer();
+
+    TimerTask task = new TimerTask(){
+
+            public void run(){
+                startSeconds --;
+                if(startSeconds == 0){
+                  timer.cancel();
+                  Greenfoot.setWorld(new GameOver());
+                  Music.bgm1.stop();
+                  Greenfoot.playSound("smb_mariodie.wav");
+                  startSeconds = 60;
+                }
+            }
+
+        };
 
     public void act(){
         removeKey();
@@ -24,7 +42,8 @@ public class Level1 extends MyWorld
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.setBackground("background8.png");
         Music.bgm1.playLoop();
-        Music.bgm1.setVolume(40);;    
+        Music.bgm1.setVolume(40);;  
+        timer.scheduleAtFixedRate(task, 1000, 1000);
         int[][] map = {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -125,7 +144,7 @@ public class Level1 extends MyWorld
         hr = new Hero(30, 40);
         Key key = new Key(30, 30);
         Punten p1 = new Punten();
-        MyTimer mt = new MyTimer();
+        GameTimer t1 = new GameTimer();
         // Laat de camera een object volgen. Die moet een Mover instatie zijn of een extentie hiervan.
         camera.follow(hr);
 
@@ -135,7 +154,7 @@ public class Level1 extends MyWorld
         addObject(new Enemy(), 10, 1410);
         addObject(key,90,1600);
         addObject(p1,900, 50);
-        addObject(mt,50,50);
+        addObject(t1,80, 60);
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);

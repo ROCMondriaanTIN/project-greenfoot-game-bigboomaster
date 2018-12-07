@@ -15,7 +15,7 @@ public class Punten extends Actor
     }
     public void act() 
     {
-        setImage(new GreenfootImage("Score: " + punten, 24, Color.BLUE, Color.WHITE));
+        setImage(new GreenfootImage("Score: " + punten, 30, Color.BLUE, Color.WHITE));
     }    
     public static void scoreKey()
     {
