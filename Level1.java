@@ -11,7 +11,7 @@ public class Level1 extends MyWorld
 {
 
     private CollisionEngine ce;
-    public static int startSeconds = 60;
+    public static int startSeconds = 100;
 
     Timer timer = new Timer();
 
@@ -20,28 +20,52 @@ public class Level1 extends MyWorld
             public void run(){
                 startSeconds --;
                 if(startSeconds == 0){
-                  timer.cancel();
-                  Punten.punten = 0;
-                  Greenfoot.setWorld(new GameOver());
-                  Music.bgm1.stop();
-                  Greenfoot.playSound("smb_mariodie.wav");
-                  startSeconds = 60;
+                    timer.cancel();
+                    Punten.punten = 0;
+                    Hero.letter = 0;
+                    Greenfoot.setWorld(new GameOver());
+                    Music.bgm1.stop();
+                    Greenfoot.playSound("smb_mariodie.wav");
+                    startSeconds = 100;
                 }
             }
 
         };
+        
+        public void letters(){
+                if(Hero.letter == 1 ){
+            addObject(new Letters('A',50,50), 350, 50);
+        }
+                else if(Hero.letter == 2 ){
+            addObject(new Letters('P',50,50), 410, 50);
+        }
+                else if(Hero.letter == 3 ){
+            addObject(new Letters('P',50,50), 470, 50);
+        }
+                else if(Hero.letter == 4 ){
+            addObject(new Letters('E',50,50), 530, 50);
+        }
+                else if(Hero.letter == 5 ){
+            addObject(new Letters('L',50,50), 590, 50);
+            Greenfoot.delay(30);
+        }
+        if(Hero.letter == 5){
+        Greenfoot.setWorld(new End());
+        }
+        }
 
     public void act(){
         removeKey();
         ce.update();
         Music.levendeHero();
+        letters();
     }
 
     public Level1()
     {
-        
+
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        this.setBackground("background8.png");
+        this.setBackground("background69.png");
         Music.bgm1.playLoop();
         Music.bgm1.setVolume(40);;  
         timer.scheduleAtFixedRate(task, 1000, 1000);
@@ -145,18 +169,27 @@ public class Level1 extends MyWorld
         hr = new Hero(30, 40);
         Key key = new Key(30, 30);
         Punten p1 = new Punten();
-        GameTimer t1 = new GameTimer();
+        GameTimer t1 = new GameTimer();     
         // Laat de camera een object volgen. Die moet een Mover instatie zijn of een extentie hiervan.
         camera.follow(hr);
 
         // Alle objecten toevoegen aan de wereld: camera, main karakter en mogelijke enemies
         addObject(camera, 0, 0);
         addObject(hr, 10, 1600);
-        addObject(new Enemy(), 10, 1410);
-        addObject(key,90,1600);
+        addObject(new Enemy(30,65), 20, 1420);
+        addObject(new Enemy(30,65), 560, 1202);
+        addObject(new Enemy(30,65), 789, 652);
+        addObject(new Enemy(30,65), 733, 520);
+        addObject(new Enemy(30,65), 843, 1400);
+        addObject(key,615,1630);
+        addObject(key,387,772);
         addObject(p1,900, 50);
         addObject(t1,80, 60);
         addObject(new Letter('A',30,30), 300, 1500);
+        addObject(new Letter('P',30,30), 143, 1080);
+        addObject(new Letter('P',30,30), 953, 706);
+        addObject(new Letter('E',30,30), 231, 486);
+        addObject(new Letter('L',30,30), 859, 376);
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);

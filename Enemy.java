@@ -12,11 +12,16 @@ public class Enemy extends Mover {
     private int xMax;
     private boolean firstAct;
     private int speed;
+    public static int HERO_WIDTH;
+    public static int HERO_HEIGHT;
 
-    public Enemy() {
+    public Enemy(int width, int heigth) {
         super();
         setImage("pokerMad.png");
+        getImage().scale(width, heigth);
         getImage().mirrorHorizontally();
+        this.HERO_WIDTH = width;
+        this.HERO_HEIGHT = heigth;
         walkRange = 140;
         firstAct = true;
         speed = 1;

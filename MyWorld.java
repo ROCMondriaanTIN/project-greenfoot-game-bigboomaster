@@ -33,6 +33,7 @@ public class MyWorld extends World {
             for(Letter letter: hr.getLettesInRange()) {
                 if(Greenfoot.getMouseInfo().getActor().equals(letter)){ 
                     removeObject(letter);
+                    Hero.letter ++;
                     Greenfoot.playSound("smb3_1-up.wav");
                     Punten.scoreLetter();
                 }
